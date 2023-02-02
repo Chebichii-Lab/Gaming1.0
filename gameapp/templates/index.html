@@ -1,0 +1,50 @@
+{%extends 'base.html'%}
+{% load static %}
+{% load bootstrap3 %}
+{% block content %}
+{{block.super}}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+    #background1 {
+        background-image: url('https://images.unsplash.com/photo-1430132594682-16e1185b17c5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+       
+    }
+</style>
+<div class="container" id="background1">
+    <div class="col-md-6" style="border-radius:1%;">
+        <div class="games" style="margin-top:50px;">
+            <div class="container">
+                <div class="row">
+                    {% for game in games %}
+                    <div class="col-sm-12 col-md-6 col-lg-4">
+                        <div class="card" style="height:360px;margin-bottom:10px;">
+                            <div class="card-body">
+                                <a href="{% url ''}">
+                                    <div class="img-cont">
+                                        <img class="card-img-top mb-10 img-responsive i-images"
+                                            src="" style="height:270px;width:300px;">
+                                        <div class="overlay">
+                                            <div class="text" style="font-size:20px; font-family: 'Special Elite', cursive; color: white;">{{game.game_title}}</div>
+                                            <p style="font-family: 'Special Elite', cursive; font-size: 15px; color: white;">By:{{game.user}}</p>
+                                            <div class="details"><a href="{% url '' %}"
+                                                    class="btn btn-primary btn-md" style="font-family: 'Special Elite', cursive;">RATE/REVIEW</a></div>
+                                        </div>
+                                    </div>
+                                </a>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <br>
+    </div>
+</div>
+{% endblock %}
