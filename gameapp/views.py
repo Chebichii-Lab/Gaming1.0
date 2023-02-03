@@ -60,3 +60,17 @@ def rate_game(request,game_id):
     else:
         form = RateForm()
     return render(request, 'rates.html', {"user":current_user,"game":games,"form":form})
+
+def search_game(request): 
+    if 'game' in request.GET and request.GET['game']:
+        name = request.GET.get("game")
+        searchResults = Game.search_by_game_title(name)
+        message = f'name'
+        params = {
+            'results': searchResults,
+            'message': message
+        }
+        return render(request, 'search.html', params)
+    else:
+        message = "You haven't searched for any game"
+    return render(request, 'search.html', {'message': message})
