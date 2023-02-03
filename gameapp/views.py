@@ -20,10 +20,16 @@ def game(request):
 	if request.method == 'POST':
 		form = GameForm(request.POST,request.FILES)
 		if form.is_valid():
-			new_project = form.save(commit=False)
-			new_project.user = current_user
-			new_project.save()
+			new_game = form.save(commit=False)
+			new_game.user = current_user
+			new_game.save()
 			return redirect('index')
 	else:
 			form = GameForm()
 	return render(request, 'game.html',{"form":form})
+
+@login_required(login_url='/accounts/login')
+def game_view(request,id):
+    game = Game.objects.get(id = id)
+    rates = Rate.objects.all()
+    return render(request, 'game_view.html',{"rates":rates,"game":game})

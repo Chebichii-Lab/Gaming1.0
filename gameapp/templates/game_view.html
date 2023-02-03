@@ -1,0 +1,99 @@
+{%extends 'base.html'%}
+{% block content %}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+    #background5 {
+        background-image: url('https://images.unsplash.com/photo-1430132594682-16e1185b17c5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+       
+    }
+</style>
+<div class="container" id="background5">
+    <div class="row" style="margin-top:40px;">
+        <div class="col-md-1"></div>
+        <div class="col-sm-12 col-md-5 col-lg-4">
+            <div class="card" style="height:340px;width:150%;margin-bottom:10px;">
+                <div class="card-body">
+                    <a href="{% url 'gamedetails' id=game.id %}">
+                        <img class="card-img-top mb-10" src="{{game.game_image.url}}"
+                            style="height:270px; width:300px;">
+                    </a>
+                </div>
+                <div class="card-body">
+                    <div class="card-text">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Empty div -->
+        <div class="col-md-5">
+            <div class="card" style="height:340px;margin-bottom:10px;">
+                <div class="card-body">
+                    <p style="font-size: 20px; font-family: 'Special Elite', cursive; color: white;"> <b style="font-size: 30px;">TITLE : </b> {{game.game_title}} </p>
+                    <p style="color: white; font-family: 'Special Elite', cursive; font-size: 20px;">
+                        {% autoescape off %}
+                        <b style="font-size: 30px; font-family: 'Special Elite', cursive;">DESCRIPTION : </b> {{game.game_description}}
+                        {% endautoescape %}
+                    </p>
+                    <p style="font-size: 20px; font-family: 'Special Elite', cursive; color: white;"> <b style="font-size: 30px;">Created by : </b> {{user.username}}</p>
+                    <br>
+                    <a href="{% url 'rate' game_id=game.id%}" class="btn btn-primary btn-lg"
+                        style="margin-top:4px; font-family: 'Special Elite', cursive;">Rate Game</a>
+                    <br>
+                    <br>
+                    <a href="{{game.game_link}}" class="btn btn-primary btn-lg" target="_blank" style="font-family: 'Special Elite', cursive;">Visit Link</a>
+                </div>
+                <div class="card-body">
+                    <div class="card-text">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        {% if rates %}
+        <div class="col-md-2">
+            <p style="font-size: 20px; font-weight: bold; text-align: center; padding-left:200px; font-family: 'Special Elite', cursive; color:white;">DESIGN</p>
+        </div>
+        <div class="col-md-2">
+            <p style="font-size: 20px; font-weight: bold; text-align: center; padding-left: 180px; font-family: 'Special Elite', cursive; color: white;">USABILITY</p>
+        </div>
+        <div class="col-md-2">
+            <p style="font-size: 20px; font-weight: bold; text-align: center; padding-left: 180px; font-family: 'Special Elite', cursive; color: white;">CONTENT</p>
+            {%else%}
+            <h3 style="padding-left:400px; font-family: 'Special Elite', cursive;">This game has no ratings</h3>
+            {%endif%}
+        </div>
+    </div>
+    <div class="container">
+        {% for rate in rates %}
+        <div class="row">
+            {% if game.id == rate.game.id %}
+            <div class="col-md-2" style="font-family: 'Special Elite', cursive; color: white; font-size: 18px;">
+                Rating by : <b> {{review.user.username}}</b></div>
+            <div class="col-md-2">
+                <button type="button" class="btn btn-primary btn-lg">{{rate.design}}</button>
+            </div>
+            <div class="col-md-2">
+                <button type="button" class="btn btn-primary btn-lg">
+                    {{rate.usability}}
+                </button>
+            </div>
+            <div class="col-md-2">
+                <button type="button" class="btn btn-primary btn-lg">{{rate.content}}</button>
+            </div>
+            <br>
+            <div class="col-md-2">
+                <button type="button" class="btn btn-success btn-lg">{{rate.average}}</button>
+            </div>
+            {%endif%}
+        </div>
+        {% endfor  %}
+        {% endblock %}
+    </div>
+</div>
