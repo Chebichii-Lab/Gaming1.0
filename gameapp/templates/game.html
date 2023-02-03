@@ -1,0 +1,45 @@
+{%extends 'base.html'%}
+{% load bootstrap3 %}
+{% load static %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+
+<title>New Project</title>
+{{form.media}}
+{% block styles %} {% bootstrap_css %}
+
+{% endblock %}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+
+<style>
+    #background2 {
+        background-image: url('https://images.unsplash.com/photo-1430132594682-16e1185b17c5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+       
+    }
+</style>
+<div class="container" style="margin-top:20px;" id="background2">
+    <h2 style="text-align:center; font-family: 'Special Elite', cursive; color: white; font-size: 40px;">Post A Game</h2>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <form action="{%url ' '%}" method="POST" enctype="multipart/form-data" style="font-family: 'Special Elite', cursive; color: white; font-size: 15px;">
+                {%csrf_token%}
+
+                {% bootstrap_form form %}
+                <input type="submit" class="btn btn-primary btn-block" style="font-family: 'Special Elite', cursive; font-size: 20px;" value="Post">
+            </form>
+        </div>
+    </div>
+</div>
+
+</html>
+{% endblock %}
