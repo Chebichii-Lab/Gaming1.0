@@ -56,7 +56,7 @@ ROOT_URLCONF = 'gameproject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -86,8 +86,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'game',   
-        'USER': 'postgres',      
-        'PASSWORD':'chebichii1',
+        'USER': 'ajay',      
+        'PASSWORD':'Ajaylee254',
         'HOST': 'localhost', 
     }
 }

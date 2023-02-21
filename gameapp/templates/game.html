@@ -31,7 +31,7 @@
     <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6">
-            <form action="{%url ' '%}" method="POST" enctype="multipart/form-data" style="font-family: 'Special Elite', cursive; color: white; font-size: 15px;">
+            <form action="{%url 'gameupload'%}" method="POST" enctype="multipart/form-data" style="font-family: 'Special Elite', cursive; color: white; font-size: 15px;">
                 {%csrf_token%}
 
                 {% bootstrap_form form %}
