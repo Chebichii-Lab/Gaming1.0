@@ -24,10 +24,10 @@
                     <div class="col-sm-12 col-md-6 col-lg-4">
                         <div class="card" style="height:360px;margin-bottom:10px;">
                             <div class="card-body">
-                                <a href="{% url 'game.game_image.url'}">
+                                <a href="{{game.game_link}}">
                                     <div class="img-cont">
                                         <img class="card-img-top mb-10 img-responsive i-images"
-                                            src="" style="height:270px;width:300px;">
+                                            src="{{game.game_image.url}}" style="height:270px;width:300px;">
                                         <div class="overlay">
                                             <div class="text" style="font-size:20px; font-family: 'Special Elite', cursive; color: white;">{{game.game_title}}</div>
                                             <p style="font-family: 'Special Elite', cursive; font-size: 15px; color: white;">By:{{game.user}}</p>
