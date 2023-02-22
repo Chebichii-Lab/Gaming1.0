@@ -14,6 +14,7 @@ urlpatterns=[
     url('profile/',views.profile, name='profile'), 
     url('game/',views.game,name='gameupload'),
     url('gamedetails/(?P<id>\d+)',views.game_view,name='gamedetails'),
+    url('review/(?P<game_id>\d+)', views.review_game, name='review'), 
     
    
 ]

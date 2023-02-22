@@ -1,7 +1,10 @@
 from django.shortcuts import render
-from gameapp.forms import GameForm,SignupForm, UserProfileForm
+from gameapp.forms import GameForm, RateForm,SignupForm, UserProfileForm
 from gameapp.models import Game, Profile, Rate
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse, Http404,HttpResponseRedirect
+from django.shortcuts import get_object_or_404, render,redirect
+from django.urls import reverse
 from django.shortcuts import redirect
 from django.contrib.auth import authenticate, login
 
@@ -28,7 +31,12 @@ def register(request):
     else:
         form= SignupForm()
     return render(request, 'registration/registration_form.html', {"form":form})  
-
+@login_required(login_url='/accounts/login/')
+def index(request):
+    games = Game.objects.all()
+    profile = Profile.objects.all()
+    rate = Rate.objects.all()
+    return render(request,'index.html', {'games':games,'profile':profile,'rate':rate})
 
 @login_required(login_url='/accounts/login/') 
 def profile(request):
@@ -61,3 +69,29 @@ def game_view(request,id):
     rates = Rate.objects.all()
     return render(request, 'game_view.html',{"rates":rates,"game":game})
 	
+@login_required(login_url='/accounts/login/')
+def review_game(request,game_id):
+    review_game = Game.game_by_id(id=game_id)
+    game = get_object_or_404(Game, pk=game_id)
+    current_user = request.user
+    if request.method == 'POST':
+        form = RateForm(request.POST)
+        if form.is_valid():
+            content = form.cleaned_data['content']
+            design = form.cleaned_data['design']
+            usability = form.cleaned_data['usability']
+            rate = Rate()
+            # rate_avarage=(rate.usability +rate.design + rate.content)/3
+            rate.game = game
+            rate.user = current_user
+            rate.usability = usability
+            rate.design = design
+            rate.content = content
+            rate.average = (rate.usability +rate.design + rate.content)/3
+            rate.save()
+            # rate_avarage= (rate.average)/3
+            # rate_avarage.save()
+            return HttpResponseRedirect(reverse('gamedetails', args=(game.id,)))
+    else:
+        form = RateForm()
+    return render(request, 'reviews.html', {"form":form,"user":current_user,"game":review_game})       
