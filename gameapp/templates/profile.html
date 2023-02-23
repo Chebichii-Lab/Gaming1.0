@@ -16,16 +16,16 @@
             <div class="col-sm-4">
                 <div id="profile" class="img-responsive">
                     <img style="width: 150%;
-                    height: 150%;" src="{{user.profile.profile_picture}}.url }}" alt="ur image">
+                    height: 150%;" src="{{user.profile_picture.url}}" alt="">
                 </div>
             </div>
             <hr>
             <div>
                 <h4>{{user.username}}</h4>
-                <p>Bio: {{user.bio}}</p>
-                <p>Contact: {{user.contact}}</p>
+                <p>Bio: {{user.profile_bio}}</p>
+                <p>Contact: {{user.profile_contact}}</p>
                 <hr>
-                <a href="/">
+                <a href="{%url 'change_profile'%}">
                     <button class="btn btn-success">Update Profile</button>
                 </a>
             </div>
