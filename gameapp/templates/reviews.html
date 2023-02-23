@@ -5,8 +5,8 @@
 <div class="container"style="font-family: 'Kavivanar', cursive;">
     <div class="row">
         <div class="col-md-3">
-            {% for proj in project %}
-            <form action="{%url 'review' game.id %}" method="POST" enctype="multipart/form-data">
+            {% for g in game %}
+            <form action="{%url 'review' g.id %}" method="POST" enctype="multipart/form-data">
                 {%csrf_token%}
 
                 {% bootstrap_form form %}

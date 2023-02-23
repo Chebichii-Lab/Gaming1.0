@@ -71,7 +71,7 @@ def game_view(request,id):
 	
 @login_required(login_url='/accounts/login/')
 def review_game(request,game_id):
-    review_game = Game.game_by_id(id=game_id)
+    gam = Game.game_by_id(id=game_id)
     game = get_object_or_404(Game, pk=game_id)
     current_user = request.user
     if request.method == 'POST':
@@ -94,4 +94,4 @@ def review_game(request,game_id):
             return HttpResponseRedirect(reverse('gamedetails', args=(game.id,)))
     else:
         form = RateForm()
-    return render(request, 'reviews.html', {"form":form,"user":current_user,"game":review_game})       
+    return render(request, 'reviews.html', {"form":form,"user":current_user,"game":gam})       
