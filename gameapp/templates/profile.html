@@ -26,7 +26,7 @@
                 <p>Contact: {{user.contact}}</p>
                 <p>location:{{user.location}}</p>
                 <hr>
-                <a href="/">
+                <a href="{% url 'update_profile' %}">
                     <button class="btn btn-success">Update Profile</button>
                 </a>
             </div>
