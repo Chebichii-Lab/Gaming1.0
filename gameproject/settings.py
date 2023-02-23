@@ -86,8 +86,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'game',   
-        'USER': 'ajay',      
-        'PASSWORD':'Ajaylee254',
+        'USER': 'postgres',      
+        'PASSWORD':'chebichii1',
         'HOST': 'localhost', 
     }
 }
