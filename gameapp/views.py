@@ -12,6 +12,11 @@ from django.contrib.auth import authenticate, login
 
 # Create your views here.
 
+def index(request):
+    games = Game.objects.all()
+    profile = Profile.objects.all()
+    rate = Rate.objects.all()
+    return render(request,'index.html', {'games':games,'profile':profile,'rate':rate})
 
 def register(request):
     if request.method=="POST":
@@ -33,6 +38,7 @@ def index(request):
     rate = Rate.objects.all()
     return render(request,'index.html', {'games':games,'profile':profile,'rate':rate})
 
+@login_required(login_url='/accounts/login/') 
 def profile(request):
     if request.method == 'POST':
         user_profile_form = UserProfileForm(request.POST, request.FILES, instance=request.user)
@@ -43,6 +49,7 @@ def profile(request):
         user_profile_form = UserProfileForm(instance=request.user)
     return render(request, 'profile.html',{"user_profile_form": user_profile_form})  
 
+@login_required(login_url='/accounts/login/') 
 def game(request):
 	current_user = request.user
 	if request.method == 'POST':
@@ -56,6 +63,7 @@ def game(request):
 			form = GameForm()
 	return render(request, 'game.html',{"form":form})
 
+@login_required(login_url='/accounts/login/') 
 def game_view(request,id):
     game = Game.objects.get(id = id)
     rates = Rate.objects.all()
@@ -63,7 +71,7 @@ def game_view(request,id):
 	
 @login_required(login_url='/accounts/login/')
 def review_game(request,game_id):
-    review_game = Game.game_by_id(id=game_id)
+    gam = Game.game_by_id(id=game_id)
     game = get_object_or_404(Game, pk=game_id)
     current_user = request.user
     if request.method == 'POST':
@@ -86,4 +94,4 @@ def review_game(request,game_id):
             return HttpResponseRedirect(reverse('gamedetails', args=(game.id,)))
     else:
         form = RateForm()
-    return render(request, 'reviews.html', {"form":form,"user":current_user,"game":review_game})       
+    return render(request, 'reviews.html', {"form":form,"user":current_user,"game":gam})       
