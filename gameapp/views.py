@@ -16,7 +16,7 @@ def index(request):
     games = Game.objects.all()
     profile = Profile.objects.all()
     rate = Rate.objects.all()
-    return render(request,'index.html', {'games':games,'profile':profile,'rate':rate})
+    return render(request,'index1.html', {'games':games,'profile':profile,'rate':rate})
 
 def register(request):
     if request.method=="POST":

@@ -7,9 +7,9 @@
     <meta charset="utf-8">
 
     {% if title %}
-    <title> Elite Gamers{{title}}</title>
+    <title>Gamers{{title}}</title>
     {% else %}
-    <title> Elite Gamers{{title}}</title>
+    <title>Gamers{{title}}</title>
     {% endif %}
 
     {% block styles %}
@@ -23,9 +23,9 @@
     
     {% include "navbar.html" %}
     {% block content %}
-
-    {%endblock%}
    
+    {%endblock%}
+    
     {% block scripts %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     {% bootstrap_javascript %}
