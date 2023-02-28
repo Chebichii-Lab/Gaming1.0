@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -150,9 +150,9 @@
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="navbar-form-wrapper">
-					<form class="navbar-form form-inline navbar-right" action="">
+					<form class="navbar-form form-inline navbar-right" action="{%url 'search' %}">
 						<div class="input-group search-box">
-							<input type="text" id="search" class="form-control" name="project"
+							<input type="text" id="search" class="form-control" name="search_title"
 								placeholder="Search title...">
 							<span class="input-group-addon"><i class="material-icons">&#xE8B6;</i></span>
 						</div>
