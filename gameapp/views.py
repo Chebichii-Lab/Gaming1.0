@@ -16,7 +16,7 @@ def index(request):
     games = Game.objects.all()
     profile = Profile.objects.all()
     rate = Rate.objects.all()
-    return render(request,'index.html', {'games':games,'profile':profile,'rate':rate})
+    return render(request,'index1.html', {'games':games,'profile':profile,'rate':rate})
 
 def register(request):
     if request.method=="POST":
@@ -94,4 +94,18 @@ def review_game(request,game_id):
             return HttpResponseRedirect(reverse('gamedetails', args=(game.id,)))
     else:
         form = RateForm()
-    return render(request, 'reviews.html', {"form":form,"user":current_user,"game":gam})       
+    return render(request, 'reviews.html', {"form":form,"user":current_user,"game":gam})     
+
+@login_required(login_url='/accounts/login/')
+def game_search(request): 
+    if 'search_title' in request.GET and request.GET['search_title']:
+        g_title = request.GET.get("search_title")
+        searchResults = Game.search_game(g_title)
+        message = f'g_title'
+        results=searchResults
+        message = message
+        return render(request,'gamesearch.html', {'results':results,'message':message})
+    else:
+        message = "Your search did not match any game titles onboard."
+    return render(request, 'gamesearch.html', {'message': message})    
+      

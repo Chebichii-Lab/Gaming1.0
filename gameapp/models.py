@@ -19,7 +19,7 @@ class Profile(models.Model):
         self.delete()
 
 class Game(models.Model):
-    game_title = models.CharField(max_length=60,blank=True)
+    title = models.CharField(max_length=60,blank=True)
     game_image = models.ImageField('image')
     game_description = models.TextField()
     game_link = models.URLField(blank=True)
@@ -41,9 +41,10 @@ class Game(models.Model):
         return game
 
     @classmethod
-    def search_by_game_title(cls,search_term):
-        games = cls.objects.filter(_title__icontains=search_term)
-        return games
+    def search_game(cls,name):
+       return cls.objects.filter(title__icontains=name).all() 
+       
+
 
 class Rate(models.Model):
     RATE_CHOICES = (

@@ -34,7 +34,7 @@
         <div class="col-md-5">
             <div class="card" style="height:340px;margin-bottom:10px;">
                 <div class="card-body">
-                    <p style="font-size: 20px; font-family: 'Special Elite', cursive; color: white;"> <b style="font-size: 30px;">TITLE : </b> {{game.game_title}} </p>
+                    <p style="font-size: 20px; font-family: 'Special Elite', cursive; color: white;"> <b style="font-size: 30px;">TITLE : </b> {{game.title}} </p>
                     <p style="color: white; font-family: 'Special Elite', cursive; font-size: 20px;">
                         {% autoescape off %}
                         <b style="font-size: 30px; font-family: 'Special Elite', cursive;">DESCRIPTION : </b> {{game.game_description}}
@@ -94,6 +94,10 @@
             {%endif%}
         </div>
         {% endfor  %}
-        {% endblock %}
+       
+       
     </div>
 </div>
+<br>
+{% include "footer.html" %}
+{% endblock %}
