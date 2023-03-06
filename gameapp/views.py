@@ -1,3 +1,4 @@
+
 from django.shortcuts import render
 from gameapp.forms import GameForm, RateForm,SignupForm, UserProfileForm
 from gameapp.models import Game, Profile, Rate
@@ -7,6 +8,7 @@ from django.shortcuts import get_object_or_404, render,redirect
 from django.urls import reverse
 from django.shortcuts import redirect
 from django.contrib.auth import authenticate, login
+
 
 
 
@@ -68,15 +70,18 @@ def game_view(request,id):
     game = Game.objects.get(id = id)
     rates = Rate.objects.all()
     return render(request, 'game_view.html',{"rates":rates,"game":game})
+
 	
 @login_required(login_url='/accounts/login/')
 def review_game(request,game_id):
     gam = Game.game_by_id(id=game_id)
+
     game = get_object_or_404(Game, pk=game_id)
     current_user = request.user
     if request.method == 'POST':
         form = RateForm(request.POST)
         if form.is_valid():
+
             content = form.cleaned_data['content']
             design = form.cleaned_data['design']
             usability = form.cleaned_data['usability']
