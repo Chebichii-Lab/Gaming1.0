@@ -34,7 +34,7 @@
         <div class="col-md-5">
             <div class="card" style="height:340px;margin-bottom:10px;">
                 <div class="card-body">
-                    <p style="font-size: 20px; font-family: 'Special Elite', cursive; color: white;"> <b style="font-size: 30px;">TITLE : </b> {{game.game_title}} </p>
+                    <p style="font-size: 20px; font-family: 'Special Elite', cursive; color: white;"> <b style="font-size: 30px;">TITLE : </b> {{game.title}} </p>
                     <p style="color: white; font-family: 'Special Elite', cursive; font-size: 20px;">
                         {% autoescape off %}
                         <b style="font-size: 30px; font-family: 'Special Elite', cursive;">DESCRIPTION : </b> {{game.game_description}}
@@ -42,7 +42,7 @@
                     </p>
                     <p style="font-size: 20px; font-family: 'Special Elite', cursive; color: white;"> <b style="font-size: 30px;">Created by : </b> {{user.username}}</p>
                     <br>
-                    <a href="{% url 'rate' game_id=game.id%}" class="btn btn-primary btn-lg"
+                    <a href="{% url 'review' game_id=game.id%}" class="btn btn-primary btn-lg"
                         style="margin-top:4px; font-family: 'Special Elite', cursive;">Rate Game</a>
                     <br>
                     <br>
@@ -75,7 +75,7 @@
         <div class="row">
             {% if game.id == rate.game.id %}
             <div class="col-md-2" style="font-family: 'Special Elite', cursive; color: white; font-size: 18px;">
-                Rating by : <b> {{review.user.username}}</b></div>
+                Rating by : <b> {{user.username}}</b></div>
             <div class="col-md-2">
                 <button type="button" class="btn btn-primary btn-lg">{{rate.design}}</button>
             </div>
@@ -94,6 +94,10 @@
             {%endif%}
         </div>
         {% endfor  %}
-        {% endblock %}
+       
+       
     </div>
 </div>
+<br>
+{% include "footer.html" %}
+{% endblock %}

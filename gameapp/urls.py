@@ -1,4 +1,5 @@
 from django.urls import path
+from django.urls import re_path as url
 from . import views
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
@@ -7,11 +8,15 @@ from django.conf import settings
 
 urlpatterns=[
     path("", views.index, name="index"),
-    path('upload/',views.game,name='add_game'),
-    path('search/', views.search_game, name='search'),
-    path(r'^game_details/(?P<id>\d+)', views.game_view, name='gamedetails'),
-    path(r'^rate/(?P<game_id>\d+)', views.rate_game, name='rate'),
-   
+    url('register/',views.register, name='registration'),
+    url('login/',auth_views.LoginView.as_view(), name='login'),
+    url('logout/', auth_views.LogoutView.as_view(template_name='registration/logout.html'), name='logout'),
+    url('profile/',views.profile, name='profile'), 
+    url('game/',views.game,name='gameupload'),
+    url('gamedetails/(?P<id>\d+)',views.game_view,name='gamedetails'),
+    url('review/(?P<game_id>\d+)', views.review_game, name='review'), 
+    url('search/', views.game_search,name='search'),
+      
 ]
 
 if settings.DEBUG:

@@ -23,23 +23,30 @@
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
-       
+
     }
 </style>
-<div class="container" style="margin-top:20px;" id="background2">
-    <h2 style="text-align:center; font-family: 'Special Elite', cursive; color: white; font-size: 40px;">Post A Game</h2>
-    <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-6">
-            <form action="{%url ' '%}" method="POST" enctype="multipart/form-data" style="font-family: 'Special Elite', cursive; color: white; font-size: 15px;">
-                {%csrf_token%}
+<div id="background2">
+    <div class="container">
+        <h2 style="text-align:center; font-family: 'Special Elite', cursive; color: white; font-size: 40px;">Post A Game
+        </h2>
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <form action="{%url 'gameupload'%}" method="POST" enctype="multipart/form-data"
+                    style="font-family: 'Special Elite', cursive; color: white; font-size: 15px;">
+                    {%csrf_token%}
 
-                {% bootstrap_form form %}
-                <input type="submit" class="btn btn-primary btn-block" style="font-family: 'Special Elite', cursive; font-size: 20px;" value="Post">
-            </form>
+                    {% bootstrap_form form %}
+                    <input type="submit" class="btn btn-primary btn-block"
+                        style="font-family: 'Special Elite', cursive; font-size: 20px;" value="Post">
+                </form>
+            </div>
         </div>
     </div>
 </div>
 
 </html>
+<br>
+{% include "footer.html" %}
 {% endblock %}
